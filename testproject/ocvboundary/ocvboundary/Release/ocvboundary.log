@@ -1,0 +1,9 @@
+﻿  main.cpp
+main.cpp(51): warning C4018: “<”: 有符号/无符号不匹配
+main.cpp(91): warning C4018: “<”: 有符号/无符号不匹配
+main.cpp(186): warning C4018: “<”: 有符号/无符号不匹配
+  正在生成代码
+  All 566 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  ocvboundary.vcxproj -> D:\code\vsproj\ocvboundary\Release\ocvboundary.exe
+  ocvboundary.vcxproj -> D:\code\vsproj\ocvboundary\Release\ocvboundary.pdb (Partial PDB)

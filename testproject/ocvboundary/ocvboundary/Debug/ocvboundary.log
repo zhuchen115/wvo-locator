@@ -1,0 +1,6 @@
+﻿  main.cpp
+d:\code\vsproj\ocvboundary\ocvboundary\main.cpp(51): warning C4018: “<”: 有符号/无符号不匹配
+d:\code\vsproj\ocvboundary\ocvboundary\main.cpp(91): warning C4018: “<”: 有符号/无符号不匹配
+d:\code\vsproj\ocvboundary\ocvboundary\main.cpp(187): warning C4018: “<”: 有符号/无符号不匹配
+  ocvboundary.vcxproj -> D:\code\vsproj\ocvboundary\Debug\ocvboundary.exe
+  ocvboundary.vcxproj -> D:\code\vsproj\ocvboundary\Debug\ocvboundary.pdb (Partial PDB)
