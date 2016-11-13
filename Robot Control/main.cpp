@@ -16,6 +16,7 @@ int main()
 	{
 		printf("Input the Function name\n");;
 		scanf("%s",cmd);
+		fflush(stdin);
 		if(strcmp(cmd,"exit")==0)
 			break;
 		if(strcmp(cmd,"mvf") == 0)
@@ -46,13 +47,16 @@ int main()
 		{
 			printf("Heading Command, Argument Format:\ndirection(0:cw,1:ccw),angle(0-360)\n");
 			Deflection def;
+			def.data = 0x0000;
 			unsigned char d;
 			unsigned short agl;
 			scanf("%hhd,%hd",&d,&agl);
 			fflush(stdin);
+			//printf("D:%d,A:%d",d,agl);
 			def.turn.direction = d;
-			def.turn.angle1 = (unsigned char)(agl&0x01);
-			def.turn.angle2 = (unsigned char)((agl>>8)&0xff);
+			def.turn.angle1 = (unsigned char)((agl>>8)&0x01);
+			def.turn.angle2 = (unsigned char)(agl&0xff);
+			printf("Heading Value: 0x%x\n",def.data);
 			port.Heading(def);
 		}
 		else if(strcmp(cmd,"ss") == 0)
@@ -91,7 +95,7 @@ int main()
 			scanf("%hd",&id);
 			fflush(stdin);
 			int value = port.QuerySensor(id);
-			printf("Returned Value:%d",value);
+			printf("Returned Value:%d\n",value);
 		}
 		else if(strcmp(cmd,"loff")==0)
 		{

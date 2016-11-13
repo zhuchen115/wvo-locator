@@ -17,10 +17,11 @@ namespace robot_control {
 	typedef union  {
 		unsigned short data;   ///< There are 2 bytes altogether in this data
 		struct {
-			unsigned char direction : 1; ///< 0 for Clockwise , 1 for counter clockwise
-			unsigned char : 6;
-			unsigned char angle1 : 1; ///< angle range from 0-360,
 			unsigned char angle2 : 8;
+			unsigned char angle1 : 1; ///< angle range from 0-360,
+			unsigned char : 6;
+			unsigned char direction : 1; ///< 0 for Clockwise , 1 for counter clockwise
+			
 		} turn;
 	} Deflection;
 }

@@ -91,8 +91,8 @@ namespace robot_control{
 		unsigned char btsMsg[7] = {0x01,0x03,0x00,0x00,0xff,0xcc,0x00};
 		/// Btyes are stored in little-endian on Linux
 		short data = htole16(azimuth.data);
-		btsMsg[3] = (unsigned char)((data>>8)&0xff);
-		btsMsg[2] = (unsigned char)(data&0xff);
+		btsMsg[2] = (unsigned char)((data>>8)&0xff);
+		btsMsg[3] = (unsigned char)(data&0xff);
 		syslog(LOG_INFO,"Turning angle %x\n",azimuth.data);
 		return _spi_send_message(btsMsg,7);
 	}
@@ -126,8 +126,8 @@ namespace robot_control{
 		unsigned char btsMsg[7] = {0x01,0x10,0x00,0x00,0xff,0xcc,0x00};
 		/// Btyes should be change into little-endian mode
 		short sp = htole16(speed);
-		btsMsg[3] = (unsigned char)((sp>>8)&0xff);
-		btsMsg[2] = (unsigned char)(sp&0xff);
+		btsMsg[2] = (unsigned char)((sp>>8)&0xff);
+		btsMsg[3] = (unsigned char)(sp&0xff);
 		syslog(LOG_INFO,"Setting Left Motor Speed to %d\n",speed);
 		return _spi_send_message(btsMsg,7);
 	}
@@ -140,8 +140,8 @@ namespace robot_control{
 		unsigned char btsMsg[7] = {0x01,0x11,0x00,0x00,0xff,0xcc,0x00};
 		/// Btyes should be change into little-endian mode
 		short sp = htole16(speed);
-		btsMsg[3] = (unsigned char)((sp>>8)&0xff);
-		btsMsg[2] = (unsigned char)(sp&0xff);
+		btsMsg[2] = (unsigned char)((sp>>8)&0xff);
+		btsMsg[3] = (unsigned char)(sp&0xff);
 		syslog(LOG_INFO,"Setting Right Motor Speed to %d\n",speed);
 		return _spi_send_message(btsMsg,7);
 	}
@@ -152,7 +152,7 @@ namespace robot_control{
 	int ControllerPort::QuerySensor(unsigned short id)
 	{
 		unsigned char btsMsg[7] = {0x01,0x20,0x00,0x00,0xff,0xcc,0x00};
-		unsigned char btsRecv[9];
+		unsigned char btsRecv[10];
 		union {
 			unsigned int u32;
 			unsigned char arr[4];
@@ -163,8 +163,8 @@ namespace robot_control{
 		memset(btsRecv,0,9);
 		/// Btyes should be change into little-endian mode
 		short id2 = htole16(id);
-		btsMsg[3] = (unsigned char)((id2>>8)&0xff);
-		btsMsg[2] = (unsigned char)(id2&0xff);
+		btsMsg[2] = (unsigned char)((id2>>8)&0xff);
+		btsMsg[3] = (unsigned char)(id2&0xff);
 		_spi_send_message(btsMsg,7);
 		
 		/// Give 10ms for Querying
@@ -174,6 +174,7 @@ namespace robot_control{
 		_spi_send_message(btsRecv,9);
 		
 		len = btsRecv[2];
+		printf("Received length: %d",len);
 		/// the length cannot over 4
 		if(len>4)
 		{
@@ -252,8 +253,8 @@ namespace robot_control{
 		unsigned char btsMsg[7] = {0x03,0x01,0x00,0x00,0xff,0xcc,0x00};
 		/// Btyes are stored in little-endian on Linux
 		unsigned short h = htole16(height);
-		btsMsg[3] = (unsigned char)((h>>8)&0xff);
-		btsMsg[2] = (unsigned char)(h&0xff);
+		btsMsg[2] = (unsigned char)((h>>8)&0xff);
+		btsMsg[3] = (unsigned char)(h&0xff);
 		syslog(LOG_INFO,"Setting Cam Height to %d\n",height);
 		return _spi_send_message(btsMsg,7);
 	}
@@ -266,8 +267,8 @@ namespace robot_control{
 		unsigned char btsMsg[7] = {0x03,0x02,0x00,0x00,0xff,0xcc,0x00};
 		/// Btyes are stored in little-endian on Linux
 		unsigned short agl = htole16(angle);
-		btsMsg[3] = (unsigned char)((agl>>8)&0xff);
-		btsMsg[2] = (unsigned char)(agl&0xff);
+		btsMsg[2] = (unsigned char)((agl>>8)&0xff);
+		btsMsg[3] = (unsigned char)(agl&0xff);
 		syslog(LOG_INFO,"Setting Cam Angle to %d\n",angle);
 		return _spi_send_message(btsMsg,7);
 	}
