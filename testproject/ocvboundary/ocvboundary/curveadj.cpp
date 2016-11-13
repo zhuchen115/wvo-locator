@@ -75,3 +75,23 @@ Mat CurveAdj::transform(Mat imgin, char channel)
 	orig_image = imgin;
 	return transform(channel);
 }
+
+Mat CurveAdj::adaptive_transform(Mat imgin)
+{
+	Mat grayimg;
+	///Throw away color and Calculate histgram
+	cvtColor(imgin, grayimg, CV_BGR2GRAY);
+
+	const int channel[1] = { 0 };
+	const int histSize[1] = { 256 };
+	float hranges[2] = { 0,255 };
+	const float *range[] = { hranges };
+	MatND hist;
+	/// Calculate the histgram
+	calcHist(&grayimg, 1, channel, Mat(), hist, 1, histSize, range);
+	double maxval, minval;
+	Point pmin, pmax;
+	minMaxLoc(hist, &minval, &maxval, &pmin, &pmax);
+	set_control_point(pmax.y, 10);
+	return transform(imgin,CURVE_CHANNEL_RGB);
+}

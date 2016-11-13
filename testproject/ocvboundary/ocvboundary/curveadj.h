@@ -1,7 +1,7 @@
 #ifndef _CURVE_ADJ_H_
 #define _CURVE_ADJ_H_
 #include <math.h>
-#include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
 #include <vector>
 using namespace std;
 using namespace cv;
@@ -24,6 +24,7 @@ using namespace cv;
 		void set_control_point(vector<int> x, vector<int> y);
 		Mat transform(char channel = CURVE_CHANNEL_RGB);
 		Mat transform(Mat imgin, char channel = CURVE_CHANNEL_RGB);
+		Mat adaptive_transform(Mat imgin);
 
 	protected:
 		/// Calculate the curve for color transform

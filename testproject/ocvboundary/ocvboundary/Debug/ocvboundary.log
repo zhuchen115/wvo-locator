@@ -1,6 +1,6 @@
-﻿  main.cpp
-d:\code\vsproj\ocvboundary\ocvboundary\main.cpp(51): warning C4018: “<”: 有符号/无符号不匹配
-d:\code\vsproj\ocvboundary\ocvboundary\main.cpp(91): warning C4018: “<”: 有符号/无符号不匹配
-d:\code\vsproj\ocvboundary\ocvboundary\main.cpp(187): warning C4018: “<”: 有符号/无符号不匹配
-  ocvboundary.vcxproj -> D:\code\vsproj\ocvboundary\Debug\ocvboundary.exe
-  ocvboundary.vcxproj -> D:\code\vsproj\ocvboundary\Debug\ocvboundary.pdb (Partial PDB)
+﻿  curveadj.cpp
+d:\code\vsproj\wvo-locator\testproject\ocvboundary\ocvboundary\curveadj.cpp(55): warning C4554: “&”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
+d:\code\vsproj\wvo-locator\testproject\ocvboundary\ocvboundary\curveadj.cpp(60): warning C4554: “&”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
+d:\code\vsproj\wvo-locator\testproject\ocvboundary\ocvboundary\curveadj.cpp(65): warning C4554: “&”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
+  ocvboundary.vcxproj -> D:\code\vsproj\wvo-locator\testproject\ocvboundary\Debug\ocvboundary.exe
+  ocvboundary.vcxproj -> D:\code\vsproj\wvo-locator\testproject\ocvboundary\Debug\ocvboundary.pdb (Partial PDB)

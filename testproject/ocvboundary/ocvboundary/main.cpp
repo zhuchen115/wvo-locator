@@ -4,7 +4,7 @@
 using namespace cv;
 Mat rgb_therhold(Mat in);
 void sobel_edge(Mat in, Mat &out);
-void findcontour(Mat grayimg, vector<vector<Point>>& contours_out);
+int findcontour(Mat grayimg, vector<vector<Point>>& contours_out);
 int main(int argc, char** argv)
 {
 	char filename[256];
@@ -63,6 +63,7 @@ int main(int argc, char** argv)
 	}
 	Mat timgrslt(imgtf.size(), CV_8U, Scalar(0));
 	drawContours(timgrslt, contours_chairs, chair_index, Scalar(255), 2);
+	/// Match Targets
 	while (1) {
 		Mat frslt= timgrslt.clone();
 		printf("Input the target file name:");
@@ -75,10 +76,7 @@ int main(int argc, char** argv)
 		}
 		i = 0;
 		do {
-			if (i)
-			{
-				curve.transform(imgin, CurveAdj::CURVE_CHANNEL_RGB);
-			}
+			imgin = curve.adaptive_transform(imgin);
 			i++;
 			imgtf = rgb_therhold(imgin);
 			imshow(rgbth, imgtf);
@@ -181,11 +179,19 @@ void sobel_edge(Mat in, Mat &out)
 }
 
 ///Find and filter out the contours
-void findcontour(Mat grayimg, vector<vector<Point>>& contours_out)
+int findcontour(Mat grayimg, vector<vector<Point>>& contours_out)
 {
 	vector<vector<Point>> contours;
+	//Mat show(grayimg.size(), CV_8U, Scalar(0));
 	contours_out.clear();
+	/*namedWindow("Cannay Therholder");
+
+	Canny(grayimg, grayimg,150,300);
+	imshow("Cannay Therholder", grayimg);
+	waitKey(0);*/
 	findContours(grayimg, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+	//drawContours(show, contours, -1, Scalar(255), 2);
+	//imshow("Cannay Therholder", show);
 
 	printf("\nNumber of contours: %d\n", contours.size());
 
@@ -193,11 +199,12 @@ void findcontour(Mat grayimg, vector<vector<Point>>& contours_out)
 	{
 		double area = fabs(contourArea(contours.at(i)));
 		///Filter object between 0.7m~5m
-		if (area > 8400&&area<190000)
+		if (area > 7600&&area<190000)
 		{
 			contours_out.push_back(contours.at(i));
 		}
 	}
 	contours.clear();
 	printf("\nNumber of contours Return: %d\n", contours_out.size());
+	return contours_out.size();
 }
