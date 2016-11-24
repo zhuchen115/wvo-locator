@@ -1,6 +1,2 @@
-﻿  curveadj.cpp
-d:\code\vsproj\wvo-locator\testproject\ocvboundary\ocvboundary\curveadj.cpp(55): warning C4554: “&”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
-d:\code\vsproj\wvo-locator\testproject\ocvboundary\ocvboundary\curveadj.cpp(60): warning C4554: “&”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
-d:\code\vsproj\wvo-locator\testproject\ocvboundary\ocvboundary\curveadj.cpp(65): warning C4554: “&”: 检查运算符优先级可能存在的错误；使用圆括号阐明优先级
-  ocvboundary.vcxproj -> D:\code\vsproj\wvo-locator\testproject\ocvboundary\Debug\ocvboundary.exe
+﻿  ocvboundary.vcxproj -> D:\code\vsproj\wvo-locator\testproject\ocvboundary\Debug\ocvboundary.exe
   ocvboundary.vcxproj -> D:\code\vsproj\wvo-locator\testproject\ocvboundary\Debug\ocvboundary.pdb (Partial PDB)
