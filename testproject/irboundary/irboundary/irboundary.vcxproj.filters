@@ -15,34 +15,46 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ocv_inc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="objectdimension.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="math_func.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Maps.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="objectdimension.cpp">
+    <ClCompile Include="ColorFilter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ContourFinder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="config.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="math_func.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Maps.cpp">
+    <ClCompile Include="objectdimension.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ColorFilter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ContourFinder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="math_func.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="objectdimension.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

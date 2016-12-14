@@ -15,34 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ocv_inc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="objectdimension.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="math_func.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Maps.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
+    <ClCompile Include="route.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="objectdimension.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="math_func.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Maps.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <ClInclude Include="route.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

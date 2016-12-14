@@ -18,22 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Maps.h" />
-    <ClInclude Include="math_func.h" />
-    <ClInclude Include="objectdimension.h" />
-    <ClInclude Include="ocv_inc.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Maps.cpp" />
-    <ClCompile Include="math_func.cpp" />
-    <ClCompile Include="objectdimension.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2b8f5380-3dd9-43cd-821b-4b04f4eb521e}</ProjectGuid>
-    <RootNamespace>ocv_slam</RootNamespace>
+    <ProjectGuid>{97328517-1efb-4530-b1d7-5f129b825c80}</ProjectGuid>
+    <RootNamespace>Route_Planner</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -149,6 +136,12 @@
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="route.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="route.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
