@@ -22,6 +22,11 @@ int main()
 		printf("Input the target image:");
 		scanf("%s", filename);
 		img = imread(filename, CV_LOAD_IMAGE_COLOR);
+		if (!img.data)
+		{
+			printf("Failed to load Image\n");
+			continue;
+		}
 		// Calibrate Image
 		img = cam.RemapImage(img);
 		//imshow("Calibrate Image", img);

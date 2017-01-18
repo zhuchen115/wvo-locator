@@ -7,7 +7,7 @@ using namespace std;
 // Describe a route
 struct Route
 {
-	// The route
+	// The route 
 	vector<Point> route;
 	// The fitness, the total length of the route
 	double fitness;
@@ -22,7 +22,10 @@ public:
 	void InitPopulation(Point start, Point end);
 private:
 	double distance(Point p1, Point p2);
+	// Indicate the whole working space
 	Mat _map;
+	// The ga_population
+	vector<Route> ga_population;
 };
 
 #endif

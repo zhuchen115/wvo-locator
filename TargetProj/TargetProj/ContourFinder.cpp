@@ -229,25 +229,12 @@ namespace image_recognize {
 
 		double comres, min_comres = 1000, comres_sum; 
 		int bcontour,bangle;
-		FILE* fp;
-		fp = fopen("D:/code/vsproj/wvo-locator/var_share/Hu.txt","a+");
+
 		for (int agl = 0; agl < contours_training.size(); agl++)
 		{
 			for (int j = 0; j < contours_match.size(); j++)
 			{
-				if (agl == 0) {
-					printf("Contour No.%d\n", j);
-					fprintf(fp, "Contour No.%d\n", j);
-					Moments mon = moments(contours_match.at(j));
-					double hum[7];
-					HuMoments(mon, hum);
-					for (int k = 0; k < 7; k++)
-					{
-						printf("Hu[%d]=%.15e\n", k, hum[k]);
-						fprintf(fp,"Hu[%d]=%.15e\n", k, hum[k]);
-					}
-					printf("\n-----------------\n");
-				}
+				
 				comres_sum = 0;
 				//double area = fabs(contourArea(contours_match.at(j)));
 				comres = matchShapes(contours_training.at(agl), contours_match.at(j), CV_CONTOURS_MATCH_I1, 0);
@@ -264,14 +251,13 @@ namespace image_recognize {
 					bangle = agl;
 				}
 			}
-			fprintf(fp, "A:%d,C:%lf,BA:%d\n", agl, comres_sum, bangle);
+			
 			LOG_PRINT(LOG_INFO, "Contours matching angle %d at best comeres sum %lf, best decided angle: %d,", agl,comres_sum,bangle);
 		}
 		
 		if (min_comres < CONTOUR_COMERS_THRESHOLD)
 		{
-			fprintf(fp, "Best Angle:%d, Comres: %f\n", bangle, min_comres);
-			fclose(fp);
+
 			LOG_PRINT(LOG_INFO, "Best Angle: %d, Comres: %f\n", bangle, min_comres);
 			info.orientation = bangle;
 			info.area = fabs(contourArea(contours_match.at(bcontour)));
@@ -284,7 +270,6 @@ namespace image_recognize {
 		else
 		{
 			LOG_PRINT(LOG_INFO, "Contour not found\n");
-			fclose(fp);
 			return 0;
 		}
 		

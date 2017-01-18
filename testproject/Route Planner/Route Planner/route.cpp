@@ -1,6 +1,13 @@
 #include "route.h"
+#include <stdlib.h>
+#include <time.h>
 
-
+//!Random an Integer within range
+int rand_int(int start=0, int end = RAND_MAX)
+{
+	srand((unsigned)time(NULL));
+	return (rand() % (end - start + 1)) + start;
+}
 
 RoutePlan::RoutePlan(Mat m)
 {
@@ -40,6 +47,14 @@ void RoutePlan::fitness(Route &route)
 
 void RoutePlan::InitPopulation(Point start, Point end)
 {
+	int DeltaX = abs(end.x - start.x); // The length of route
+	int Ry; // Randomed Y
+	int Rmax = _map.size().height;
+	for (int i = 0; i < DeltaX; i++)
+	{
+
+	}
+
 }
 
 double RoutePlan::distance(Point p1, Point p2)
