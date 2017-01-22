@@ -15,9 +15,9 @@
 #include "ColorFilter.h"
 #include "Camera.h"
 /// Using access function
-#ifdef linux
+#ifdef __GNUC__
 #include <unistd.h>
-#include <syslog>
+#include <syslog.h>
 #else
 #include <io.h>
 #endif
@@ -31,7 +31,7 @@ namespace image_recognize {
 	void ContourFinder::LoadTraining()
 	{
 		/// The training file not exist
-#ifdef linux
+#ifdef __GNUC__
 		if (access(CONTOUR_CACHE_FILE, 0) < 0)
 #else
 		if (_access(CONTOUR_CACHE_FILE, 0) < 0)
@@ -41,7 +41,7 @@ namespace image_recognize {
 			return;
 		}
 		/// Check the file is readable
-#ifdef linux
+#ifdef __GNUC__
 		if (access(CONTOUR_CACHE_FILE, 2) < 0)
 #else
 		if (_access(CONTOUR_CACHE_FILE, 2) < 0)
@@ -109,7 +109,9 @@ namespace image_recognize {
 					
 					double area = fabs(contourArea(contours_chairs.at(0)));
 					LOG_PRINT(LOG_INFO, "Found training contour, area: %lf", area);
-					contours_training.push_back(contours_chairs.at(0));
+					Rect r = boundingRect(contours_chairs.at(0));
+                    printf("Traing Height %d\n",r.height);
+                    contours_training.push_back(contours_chairs.at(0));
 					/// Clear the contours found for next round
 					contours_chairs.clear();
 				}
@@ -128,7 +130,8 @@ namespace image_recognize {
 							selected = contours_chairs.at(j);
 						}
 					}
-
+                    Rect r = boundingRect(selected);
+                    printf("Training Height %d",r.height);
 					contours_training.push_back(selected);
 					/// Clear the contours for next round
 					contours_chairs.clear();
@@ -152,7 +155,7 @@ namespace image_recognize {
 	void ContourFinder::SaveTraining()
 	{
 		/// Check the file is writeable
-#ifdef linux
+#ifdef __GNUC__
 		if ((access(CONTOUR_CACHE_FILE,0)==0)&&(access(CONTOUR_CACHE_FILE, 2) < 0))
 #else
 		if ((_access(CONTOUR_CACHE_FILE, 0) == 0) && (_access(CONTOUR_CACHE_FILE, 2) < 0))
@@ -214,13 +217,12 @@ namespace image_recognize {
 #endif
 		/// Filter the image using adaptive filter
 		Mat image_match = ColorFilter::AdaptiveVFilter(image);
-		
 		Mat image_mgray(image_match.size(), CV_8UC1); // Store the grayscale image
 		vector<vector<Point>> contours_match; // Store the contours found
 													  /// Convert the image into gray scale
 		cvtColor(image_match, image_mgray, CV_BGR2GRAY);
-		imshow("Filtered GRAY Image", image_mgray);
-		waitKey(0);
+		/*imshow("Gray Match Image", image_mgray);
+		waitKey(0);*/
 		/// Release the memory
 		image_match.release();
 
@@ -232,22 +234,22 @@ namespace image_recognize {
 
 		double comres, min_comres = 1000, comres_sum; 
 		int bcontour,bangle;
-		FILE* fp;
-		fp = fopen("D:/code/vsproj/wvo-locator/var_share/Hu.txt","a+");
+		//FILE* fp;
+		//fp = fopen("D:/code/vsproj/wvo-locator/var_share/Hu.txt","a+");
 		for (int agl = 0; agl < contours_training.size(); agl++)
 		{
 			for (int j = 0; j < contours_match.size(); j++)
 			{
 				if (agl == 0) {
 					printf("Contour No.%d\n", j);
-					fprintf(fp, "Contour No.%d\n", j);
+		//			fprintf(fp, "Contour No.%d\n", j);
 					Moments mon = moments(contours_match.at(j));
 					double hum[7];
 					HuMoments(mon, hum);
 					for (int k = 0; k < 7; k++)
 					{
 						printf("Hu[%d]=%.15e\n", k, hum[k]);
-						fprintf(fp,"Hu[%d]=%.15e\n", k, hum[k]);
+		//				fprintf(fp,"Hu[%d]=%.15e\n", k, hum[k]);
 					}
 					printf("\n-----------------\n");
 				}
@@ -267,14 +269,14 @@ namespace image_recognize {
 					bangle = agl;
 				}
 			}
-			fprintf(fp, "A:%d,C:%lf,BA:%d\n", agl, comres_sum, bangle);
+		//	fprintf(fp, "A:%d,C:%lf,BA:%d\n", agl, comres_sum, bangle);
 			LOG_PRINT(LOG_INFO, "Contours matching angle %d at best comeres sum %lf, best decided angle: %d,", agl,comres_sum,bangle);
 		}
 		
 		if (min_comres < CONTOUR_COMERS_THRESHOLD)
 		{
-			fprintf(fp, "Best Angle:%d, Comres: %f\n", bangle, min_comres);
-			fclose(fp);
+		//	fprintf(fp, "Best Angle:%d, Comres: %f\n", bangle, min_comres);
+		//	fclose(fp);
 			LOG_PRINT(LOG_INFO, "Best Angle: %d, Comres: %f\n", bangle, min_comres);
 			info.orientation = bangle;
 			info.area = fabs(contourArea(contours_match.at(bcontour)));
@@ -287,7 +289,7 @@ namespace image_recognize {
 		else
 		{
 			LOG_PRINT(LOG_INFO, "Contour not found\n");
-			fclose(fp);
+		//	fclose(fp);
 			return 0;
 		}
 		

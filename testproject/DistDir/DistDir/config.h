@@ -1,7 +1,7 @@
 #ifndef _CONFIG_H
 #define _CONFIG_H
 
-#ifdef linux
+#ifdef __GNUC__
 #define SHARE_DOCUMENT_DIR "/usr/local/share/pprobot/"
 
 #define CONTOUR_CACHE_FILE "/var/local/lib/pprobot/contours.xml"
@@ -15,9 +15,9 @@
 #define VAR_DOCUMENT_DIR "D:/code/vsproj/wvo-locator/var_share/"
 #endif
 /// The thresold to find the HSV mask threshold
-#define ADAPTIVE_THRESHOLD 0.005
+#define ADAPTIVE_THRESHOLD 0.018
 /// The sum of comers in comparing the Hu Moments
-#define CONTOUR_COMERS_THRESHOLD 1.7
+#define CONTOUR_COMERS_THRESHOLD 1.7 
 
 #ifdef linux
 #define GEN_LOG 1
@@ -25,6 +25,7 @@
 #define GEN_LOG 0
 #endif
 #if GEN_LOG
+#include <syslog.h>
 #define LOG_PRINT(level,msg,...) syslog(level,msg,##__VA_ARGS__);\
 									if(Config::showmsg) printf(msg,##__VA_ARGS__);\
 									printf("\n")
@@ -54,5 +55,20 @@ public:
 	static bool showmsg;
 
 };
+
+/** The Displacement Sensor to centimeter value in float*/
+#define MICE_X_COEF 331.38
+#define MICE_Y_COEF 322.13
+
+/// Using /dev/spidev0.0
+#define SPI_CHANNEL 0
+/// Set the spi speed tp 500K
+#define SPI_CLOCK 500000
+/// The Slave need to answer
+#define NEED_ACK 1
+
+/** The Mechanical Hook max h range*/
+#define HOOK_MAX_OFFSET 60
+
 
 #endif
